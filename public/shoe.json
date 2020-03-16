@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "name": "Nike Zoom Kobe 4",
+      "url": "http://shihuo.hupucdn.com/trade/reposition/2018-08-14/d75547dd52358d38cded7f22badb1413.png?imageView2/1/w/120/h/120",
+      "price": "1299"
+    },
+    {
+      "id": 1,
+      "name": "Nike Kobe AD NXT FastFit",
+      "url": "http://shihuo.hupucdn.com/def/20190731/c034ac68bd29f6ebd7e2a4fedc3655631564542442.jpg?imageView2/1/w/120/h/120",
+      "price": "1199"
+    },
+    {
+      "id": 2,
+      "name": "Nike Mamba Rage",
+      "url": "http://shihuo.hupucdn.com/trade/reposition/2019-03-04/8c64b3791353eecb5afb7d06d4bfbb36.png?imageView2/1/w/120/h/120",
+      "price": "999"
+    },
+    {
+      "id": 3,
+      "name": "Nike Kobe 11",
+      "url": "http://shihuo.hupucdn.com/def/20181109/c81494c0a48d5bafff4876136e261dda1541745724.jpg?imageView2/1/w/120/h/120",
+      "price": "1399"
+    },
+    {
+      "id": 4,
+      "name": "Nike Zoom Kobe 1",
+      "url": "http://shihuo.hupucdn.com/def/20181109/7b79badd457ac9732393e0e51c3e87d81541745602.jpg?imageView2/1/w/120/h/120",
+      "price": "1699"
+    },
+    {
+      "id": 5,
+      "name": "Nike Kobe 9",
+      "url": "http://shihuo.hupucdn.com/def/20181109/868d54db4eebeca4cc3b68cdc5beb0ae1541746784.jpg?imageView2/1/w/120/h/120",
+      "price": "1599"
+    }
+  ]
+}

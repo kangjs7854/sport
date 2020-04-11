@@ -1,11 +1,11 @@
 <template>
   <List item-layout="vertical">
-    <ListItem v-for="(item,index) in jrsMsg" :key="index" class="news-item">
-        <ListItemMeta :title="item.title" :description="item.ID" />
-        <viewer >
-          <img :src="item.pic3" style="width: 100%" />
-          <img :src="item.pic2" style="width: 100%" />
-        </viewer>
+    <ListItem v-for="(item, index) in jrsMsg" :key="index" class="news-item">
+      <ListItemMeta :title="item.title" :description="item.ID" />
+      <viewer>
+        <img :src="item.pic3" style="width: 100%" />
+        <img :src="item.pic2" style="width: 100%" />
+      </viewer>
       <div>
         <Icon type="ios-thumbs-up-outline" />66
         <Icon type="ios-chatbubbles-outline" />6
@@ -28,12 +28,11 @@ export default {
   },
   mounted() {
     this.$axios.get("jrs.json").then(res => {
-      this.jrsMsg = res.data.data
-      this.jrsMsg.sort(()=>0.5-Math.random())
+      this.jrsMsg = res.data.data;
+      this.jrsMsg.sort(() => 0.5 - Math.random());
     });
   }
 };
 </script>
 
-<style>
-</style>
+<style></style>

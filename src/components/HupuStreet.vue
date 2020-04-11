@@ -1,11 +1,11 @@
 <template>
   <div ref="container">
     <ul class="bxjMsg-box">
-      <li v-for="(item,index) in bxjMsg" :key="index" @click="jumpTo(item)">
-        <h3>{{item.title}}</h3>
+      <li v-for="(item, index) in bxjMsg" :key="index" @click="jumpTo(item)">
+        <h3>{{ item.title }}</h3>
         <div class="subtitle">
-          {{item.name}}
-          {{item.time}}
+          {{ item.name }}
+          {{ item.time }}
         </div>
         <Divider />
       </li>
@@ -31,8 +31,8 @@ export default {
   },
   mounted() {
     this.$axios.get("bxj2.json").then(res => {
-      this.bxjMsg = res.data.data
-      this.bxjMsg.sort(()=>0.5-Math.random())
+      this.bxjMsg = res.data.data;
+      this.bxjMsg.sort(() => 0.5 - Math.random());
     });
   }
 };

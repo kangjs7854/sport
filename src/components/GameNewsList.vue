@@ -2,8 +2,16 @@
   <div>
     <GameCarBanner />
     <List item-layout="vertical">
-      <ListItem v-for="item in news" :key="item.title" @click.native="jumpTo(item)">
-        <ListItemMeta :avatar="item.avatar" :title="item.title" :description="item.description" />
+      <ListItem
+        v-for="item in news"
+        :key="item.title"
+        @click.native="jumpTo(item)"
+      >
+        <ListItemMeta
+          :avatar="item.avatar"
+          :title="item.title"
+          :description="item.description"
+        />
         {{ item.content }}
         <template slot="extra">
           <img :src="item.img" style="width: 280px" />
@@ -34,8 +42,8 @@ export default {
   },
   mounted() {
     this.$axios.get("hupunews.json").then(res => {
-      this.news = res.data.data
-      this.news.sort(()=>0.5-Math.random())
+      this.news = res.data.data;
+      this.news.sort(() => 0.5 - Math.random());
     });
   },
   filters: {
@@ -47,6 +55,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

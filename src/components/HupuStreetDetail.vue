@@ -1,32 +1,36 @@
 <template>
   <div style="padding:10px">
     <Affix :offset-top="10">
-      <Icon type="ios-arrow-back" @click="$router.go(-1)" style="fontSize:20px" />
+      <Icon
+        type="ios-arrow-back"
+        @click="$router.go(-1)"
+        style="fontSize:20px"
+      />
     </Affix>
     <div>
-      {{msg.name}}
-      {{msg.time}}
+      {{ msg.name }}
+      {{ msg.time }}
     </div>
-    <h3>{{msg.title}}</h3>
+    <h3>{{ msg.title }}</h3>
     <div>
       <viewer>
         <img :src="msg.img" width="100%" />
       </viewer>
     </div>
-    <p style="paddingBottom:20px">{{msg.content}}</p>
+    <p style="paddingBottom:20px">{{ msg.content }}</p>
     <Comment />
   </div>
 </template>
 
 <script>
-import Comment from '../components/Comment';
+import Comment from "../components/Comment";
 export default {
   data() {
     return {
       msg: {}
     };
   },
-  components:{
+  components: {
     Comment
   },
   mounted() {
@@ -36,5 +40,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

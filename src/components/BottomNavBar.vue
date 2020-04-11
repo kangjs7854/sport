@@ -1,8 +1,13 @@
 <template>
   <div class="btn-nav-wrap">
     <Menu class="btm-nav" mode="horizontal" theme="light" active-name="0">
-      <MenuItem v-for="(item,index) in channels" :key="index" :name="index" :to="item.router" >
-        <Icon :type="item.icon" size="16"/>{{item.name}}
+      <MenuItem
+        v-for="(item, index) in channels"
+        :key="index"
+        :name="index"
+        :to="item.router"
+      >
+        <Icon :type="item.icon" size="16" />{{ item.name }}
       </MenuItem>
     </Menu>
   </div>
@@ -10,15 +15,15 @@
 
 <script>
 export default {
-  data(){
-    return{
-      channels:[
-        {name:'推荐',router:'/',icon:"md-home"},
-        {name:'赛事',router:'/game',icon:"md-basketball"},
-        {name:'社区',router:'/jrs',icon:"ios-chatbubbles"},
-        {name:'装备',router:'/shop',icon:"ios-cart"},
+  data() {
+    return {
+      channels: [
+        { name: "推荐", router: "/", icon: "md-home" },
+        { name: "赛事", router: "/game", icon: "md-basketball" },
+        { name: "社区", router: "/jrs", icon: "ios-chatbubbles" },
+        { name: "装备", router: "/shop", icon: "ios-cart" }
       ]
-    }
+    };
   }
 };
 </script>

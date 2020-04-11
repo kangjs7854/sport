@@ -57,21 +57,16 @@ superagent
           pic2: contentimg2,
           pic3: contentimg3
         };
-       
 
         let picArr = [contentimg1, contentimg2, contentimg3];
-    
 
         //通过fs模块把数据写入本地json
-        fs.appendFile(
-          "public/bxj.json",
-          JSON.stringify(ssr),
-          "utf-8",
-          function(err) {
-            if (err) throw new Error("appendFile failed...");
-            //console.log("数据写入success...");
-          }
-        );
+        fs.appendFile("public/bxj.json", JSON.stringify(ssr), "utf-8", function(
+          err
+        ) {
+          if (err) throw new Error("appendFile failed...");
+          //console.log("数据写入success...");
+        });
         //定义一个以title为文件夹名的路径，作为以后下载图片时使用
         let lujin = "data/" + title + "/";
         //判断文件夹是否存在

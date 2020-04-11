@@ -1,26 +1,19 @@
 <template>
-      <List item-layout="vertical">
-        <ListItem
-          v-for="item in newsList"
-          :key="item.id"
-          class="news-item"
-          @click.native="jumpTo(item)"
-        >
-          <ListItemMeta :title="item.title" :description="item.interest" />
-          {{ item.source }}
-          {{ item.ptime }}
-          <template slot="action">
-            <li v-for="(icon,index) in icons" :key="index" @click="addNum(index)">
-              <Icon :type="icon.type" />
-              {{icon.num}}
-            </li>
-          </template>
-          <template slot="extra">
-            <img :src="item.img" style="width: 280px" />
-          </template>
-        </ListItem>
-      </List>
-
+  <List item-layout="vertical">
+    <ListItem
+      v-for="item in newsList"
+      :key="item.id"
+      class="news-item"
+      @click.native="jumpTo(item)"
+    >
+      <ListItemMeta :title="item.title" :description="item.interest" />
+      {{ item.source }}
+      {{ item.ptime }}
+      <template slot="extra">
+        <img :src="item.img" style="width: 280px" />
+      </template>
+    </ListItem>
+  </List>
 </template>
 
 <script>
@@ -28,15 +21,10 @@ export default {
   data() {
     return {
       selects: [],
-      newsList: [],
-      icons: [
-        { type: "ios-star-outline", num: 123 },
-        { type: "ios-thumbs-up-outline", num: 234 },
-        { type: "ios-chatbubbles-outline", num: 345 }
-      ]
+      newsList: []
     };
   },
- 
+
   methods: {
     addNum(index) {
       this.icons[index].num++;

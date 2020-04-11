@@ -1,7 +1,7 @@
 <template>
   <div class="game-warp">
-    <Menu mode="horizontal"  active-name="1">
-      <MenuItem name="1" to="/game"> 
+    <Menu mode="horizontal" active-name="1">
+      <MenuItem name="1" to="/game">
         NBA
       </MenuItem>
       <MenuItem name="2" to="/game/video">

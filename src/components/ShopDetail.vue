@@ -4,46 +4,46 @@
       <!-- 头部菜单 -->
       <div class="title">
         <Icon size="20" type="ios-arrow-back" @click="$router.go(-1)" />
-        <Icon size="20" type="ios-cart" @click="$router.push({path:'/shop/cart'})" />
+        <Icon size="20" type="ios-cart" @click="jumpTo" />
       </div>
       <!-- 轮播 -->
       <Carousel v-model="value1" loop>
-        <CarouselItem v-for="(item,index) in 4" :key="index">
-          <div class="img-wrap">
-            <img :src="shoe.url" width="60%" />
-          </div>
+        <CarouselItem class="img-wrap" v-for="(item, index) in 4" :key="index">
+          <img :src="product.image" class="img" />
         </CarouselItem>
       </Carousel>
       <!-- 价格 -->
       <div class="price">
         <span>￥</span>
-        <span>{{shoe.price}}</span>
+        <span>{{ product.price }}</span>
       </div>
       <h4 class="old">
         官方价格
-        <span>{{shoe.price*1.5}}</span>
+        <span>{{ product.price * 1.5 }}</span>
       </h4>
-      <h2>{{shoe.name}}</h2>
+      <h3>{{ product.name }}{{ product.description }}</h3>
+
       <!-- 选择配色 -->
+
       <div class="color">
         <div class="title">
-          <span>选择配色</span>
-          <span @click="$store.commit('openSizeDrawer')">
-            选择尺码 {{choosedSize}}
+          <span>选择配色 {{ choosedColor }}</span>
+          <span @click="$store.commit('OPEN_SIZE_DRAWER')">
+            选择尺码 {{ choosedSize }}
             <Icon type="ios-arrow-forward" />
           </span>
         </div>
         <div class="box-wrap">
           <Card
             class="box-item"
-            :class="{active :isActive==index}"
+            :class="{ active: isActive == index }"
             style="width:25%"
-            v-for="(item,index) in shoesColor"
+            v-for="(item, index) in shoesColor"
             :key="index"
             @click.native="handleChoosedColor(index)"
           >
-            <img :src="item.url" alt width="100%" />
-            <span>{{item.type}}</span>
+            <img :src="product.image" alt width="100%" />
+            <span>{{ item.type }}</span>
           </Card>
         </div>
       </div>
@@ -56,22 +56,28 @@
         </div>
         <div class="btn">
           <Button
-            v-if="!choosedSize"
+            v-if="choosedSize === ''"
             long
             type="error"
-            @click="$store.commit('openSizeDrawer')"
-          >查看尺码价格</Button>
-          <Button v-else long type="error" @click="handleBuyShoe">立即购买</Button>
+            @click="$store.commit('OPEN_SIZE_DRAWER')"
+            >查看尺码价格</Button
+          >
+          <Button v-else long type="error" @click="handleBuyShoe"
+            >立即购买</Button
+          >
         </div>
       </div>
-      <ShopInfoSize :shoe="shoe" @choosedSize="handleChoosedSize" />
+      <shop-dtail-size-drawer
+        :product="product"
+        @choosedSize="handleChoosedSize"
+      />
     </div>
   </keep-alive>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import ShopInfoSize from "../components/ShopInfoSize";
+import ShopDetailSizeDrawer from "../components/ShopDetailSizeDrawer";
 export default {
   data() {
     return {
@@ -82,57 +88,56 @@ export default {
         { type: "Foundation" }
       ],
       value1: 0,
-      isCollect: false,
-      isActive: 0,
-      choosedColor: "Red/white",
-      choosedSize: "",
-      // shoeInfo: {},
-      orders: []
+      isCollect: false, //是否被收藏
+      isActive: 0, //颜色选择框
+      choosedColor: "Red/white", //选中的颜色
+      choosedSize: "" //选择的尺码
     };
   },
   components: {
-    ShopInfoSize
+    "shop-dtail-size-drawer": ShopDetailSizeDrawer
   },
   computed: {
-    ...mapState(["shoe","shoeInfos"])
+    ...mapState(["product", "isLogin"])
   },
-  created() {
-    // this.shoe = this.$route.params;
-    this.shoesColor.forEach(item => (item.url = this.shoe.url));
-    console.log(JSON.parse(localStorage.getItem('shoeInfos')));
-    
+  mounted() {
+    const { name } = this.product;
+    //如果商品详情页面的内容为空，就从后端api接口请求数据
+    if (!this.name) {
+      this.$store.dispatch("productById", {
+        productId: this.$route.query.id
+      });
+    }
   },
   methods: {
     //收藏
     collect() {
+      if (!this.isLogin) return this.$Message.warning("未登录");
       this.isCollect = !this.isCollect;
     },
     //选择码数
     handleChoosedSize(data) {
       this.choosedSize = data;
-      console.log(this.choosedSize);
     },
     //选择颜色
     handleChoosedColor(index) {
       this.isActive = index;
       this.choosedColor = this.shoesColor[index].type;
-      console.log(this.choosedColor);
     },
     //添加到购物车
-    handleBuyShoe() {
-      let shoeInfo = {
-        name: this.shoe.name,
-        price: this.shoe.price,
-        url: this.shoe.url,
-        color: this.choosedColor,
-        size: this.choosedSize
-      };
-      this.$store.commit('setShoeInfos',shoeInfo)
-      localStorage.setItem('shoeInfos',JSON.stringify(this.shoeInfos))
-      this.$router.push({
-        name: "shopcart"
-        // params: this.orderInfo
-      });
+    async handleBuyShoe() {
+      if (!this.isLogin) return this.$Message.warning("未登录");
+      this.$set(this.product, "color", this.choosedColor);
+      this.$set(this.product, "size", this.choosedSize);
+      await this.$store.commit("ADD_TO_CART", this.product);
+      console.log("此时的购物车数据：", this.$store.state.cart);
+      this.$Message.success("添加成功");
+      this.$router.push("/shop/cart");
+    },
+    //跳转到购物车
+    jumpTo() {
+      if (!this.isLogin) return this.$Message.warning("未登录");
+      this.$router.push("/shop/cart");
     }
   }
 };
@@ -142,6 +147,9 @@ export default {
 .img-wrap {
   display: flex;
   justify-content: center;
+}
+.img {
+  width: 25%;
 }
 .price {
   font-weight: 700;
@@ -160,7 +168,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin: 5px 0px;
 }
 .color .box-wrap {
   display: flex;
@@ -184,5 +192,14 @@ export default {
 .title {
   display: flex;
   justify-content: space-between;
+}
+.box-item span {
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 540px) {
+  .img {
+    width: 60%;
+  }
 }
 </style>

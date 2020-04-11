@@ -10,9 +10,15 @@
           <Avatar size="30">
             <img :src="avatar" />
           </Avatar>
-          <div class="coment-username">{{username}}</div>
+          <div class="coment-username">{{ username }}</div>
         </div>
-        <Input type="textarea" :rows="4" size="large" v-model="textarea" autofocus />
+        <Input
+          type="textarea"
+          :rows="4"
+          size="large"
+          v-model="textarea"
+          autofocus
+        />
         <div class="send-btn">
           <Button type="primary" @click="sendComment">发表</Button>
         </div>
@@ -68,11 +74,11 @@ export default {
       action: null,
       moment,
       textarea: "",
-      comments: [],
+      comments: []
     };
   },
   computed: {
-    ...mapState(["username", "avatar"])
+    ...mapState(["isLogin", "username", "avatar"])
   },
 
   methods: {
@@ -87,6 +93,7 @@ export default {
       this.action = "disliked";
     },
     sendComment() {
+      if (!this.isLogin) return this.$Message.warning("未登录");
       let obj = {
         username: this.username,
         avatar: this.avatar,
@@ -96,11 +103,9 @@ export default {
       localStorage.setItem("comments", JSON.stringify(this.comments));
     },
     handleDelete(index) {
-      this.comments.splice(index,1)
-      localStorage.setItem('comments',JSON.stringify(this.comments))
-      
-    },
-  
+      this.comments.splice(index, 1);
+      localStorage.setItem("comments", JSON.stringify(this.comments));
+    }
   },
   mounted() {
     this.comments = JSON.parse(localStorage.getItem("comments"));

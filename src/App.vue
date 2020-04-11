@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-    <AppBar />
-    <router-view class="body" />
-    <div class="space"></div>
-    <BottomNavBar />
+    <!-- <AppBar /> -->
+    <router-view />
+    <!-- <div class="space"></div> -->
+    <!-- <BottomNavBar /> -->
   </div>
 </template>
 <script>
-const BottomNavBar = () => import("./components/BottomNavBar");
-const AppBar = () => import("./components/AppBar");
+// const BottomNavBar = () => import("./components/BottomNavBar");
+// const AppBar = () => import("./components/AppBar");
 export default {
   components: {
-    BottomNavBar,
-    AppBar
+    // BottomNavBar,
+    // AppBar
   }
 };
 </script>
 <style scoped>
-.space {
+/* .space {
   padding: 40px;
-}
+} */
 </style>

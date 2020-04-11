@@ -1,38 +1,42 @@
 <template>
   <div class="card-wrap">
-    <Card class="card-item" v-for="item in shoes" :key="item.id" @click.native="Linkto(item)">
-      <img :src="item.url" width="100%" alt />
-      <span class="name">{{item.name}}</span>
+    <Card
+      class="card-item"
+      v-for="item in products"
+      :key="item.id"
+      @click.native="jumpTo(item)"
+    >
+      <img :src="item.image" width="100%" alt />
+      <span class="name">{{ item.name }}</span>
       <div class="footer">
-        <span class="price">¥{{item.price}}</span>
-        <span class="hot">热度{{item.hot}}</span>
+        <span class="price">¥{{ item.price }}</span>
+        <span class="hot">热度{{ item.hot }}</span>
       </div>
+    </Card>
+    <Card class="card-item" @click.native="$router.push('/shop/new')">
+      <Icon type="ios-add" size="100" color="#999" />
     </Card>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  data() {
-    return {
-      shoes: []
-    };
+  computed: {
+    ...mapState(["products"])
   },
   mounted() {
-    this.$axios.get("shoe.json").then(res => {
-      this.shoes = res.data.data;
-      this.shoes.forEach(
-        item => (item.hot = Math.floor(Math.random() * 100000))
-      );
-      this.shoes.sort(()=>0.5-Math.random())
-    });
+    this.$store.dispatch("allProducts");
   },
   methods: {
-    Linkto(item) {
+    jumpTo(item) {
       this.$router.push({
-        name: "shopinfo"
+        path: "/shop/detail",
+        query: {
+          id: item._id
+        }
       });
-      this.$store.commit("setShoe", item);
+      this.$store.commit("SELECTE_PRODUCT", item);
     }
   }
 };
@@ -45,7 +49,7 @@ export default {
 }
 .card-item {
   display: flex;
-  width: 50%;
+  width: 25%;
   justify-content: center;
   align-items: center;
 }
@@ -64,5 +68,15 @@ export default {
 .footer .price {
   font-weight: 700;
   color: black;
+}
+
+/** 手机 **/
+@media only screen and (max-width: 540px) {
+  .card-item {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

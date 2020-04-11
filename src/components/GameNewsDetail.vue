@@ -1,13 +1,17 @@
 <template>
   <div>
     <Affix :offset-top="10">
-      <Icon type="ios-arrow-back" @click="$router.go(-1)" style="fontSize:20px" />
+      <Icon
+        type="ios-arrow-back"
+        @click="$router.go(-1)"
+        style="fontSize:20px"
+      />
     </Affix>
-    <h2>{{news.title}}</h2>
+    <h2>{{ news.title }}</h2>
     <viewer>
       <img :src="news.img" class="img-box" />
     </viewer>
-    {{news.content}}
+    {{ news.content }}
     <Divider />
     <Comment />
     <br />

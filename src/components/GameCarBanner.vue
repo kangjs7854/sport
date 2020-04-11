@@ -9,9 +9,14 @@
       :trigger="setting.trigger"
       :arrow="setting.arrow"
     >
-      <CarouselItem v-for="(item,index) in 3" :key="index">
+      <CarouselItem v-for="(item, index) in 3" :key="index">
         <div ref="card" class="card">
-          <Card class="card-item" style="width:160px" v-for="(item,index) in 8" :key="index">
+          <Card
+            class="card-item"
+            style="width:160px"
+            v-for="(item, index) in 8"
+            :key="index"
+          >
             <div class="title">
               <span>NBA常规赛</span>
               <span>直播中</span>
@@ -56,7 +61,6 @@ export default {
 </script>
 
 <style scoped>
-
 .card {
   display: flex;
   margin: 10px 0;

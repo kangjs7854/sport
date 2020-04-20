@@ -1,14 +1,16 @@
 <template>
-  <div style="padding:10px">
+  <div style="padding:10px" >
     <Icon size="20" type="ios-arrow-back" @click="$router.go(-1)" />
     <h3>{{ news && news.title }}</h3>
     <div>
       <span>{{ news && news.source }}</span>
       <span>{{ news && news.ptime }}</span>
     </div>
-    <viewer class="img-wrap">
-      <img :src="news && news.image" alt="newsimg" width="100%" />
-    </viewer>
+    <div class="img-wrap">
+      <viewer>
+        <img :src="news && news.image" alt="newsimg" width="100%" />
+      </viewer>
+    </div>
     <div v-html="news.body">{{ news && news.body }}</div>
   </div>
 </template>
@@ -36,7 +38,12 @@ export default {
 </script>
 
 <style scoped>
+
 .img-wrap {
   margin: 10px 0;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

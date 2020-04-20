@@ -67,7 +67,7 @@
           >
         </div>
       </div>
-      <shop-dtail-size-drawer
+      <size-drawer
         :product="product"
         @choosedSize="handleChoosedSize"
       />
@@ -77,7 +77,7 @@
 
 <script>
 import { mapState } from "vuex";
-import ShopDetailSizeDrawer from "../components/ShopDetailSizeDrawer";
+import sizeDrawer from "./sizeDrawer";
 export default {
   data() {
     return {
@@ -95,7 +95,7 @@ export default {
     };
   },
   components: {
-    "shop-dtail-size-drawer": ShopDetailSizeDrawer
+    "size-drawer": sizeDrawer
   },
   computed: {
     ...mapState(["product", "isLogin"])
@@ -137,7 +137,7 @@ export default {
     //跳转到购物车
     jumpTo() {
       if (!this.isLogin) return this.$Message.warning("未登录");
-      this.$router.push("/shop/cart");
+      this.$router.push("/cart");
     }
   }
 };

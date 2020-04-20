@@ -1,11 +1,7 @@
 <template>
   <div>
     <el-carousel :interval="4000" type="card" class="banner-one">
-      <el-carousel-item
-        class="img-wrap"
-        v-for="(item, index) in imgs"
-        :key="index"
-      >
+      <el-carousel-item class="img-wrap" v-for="(item, index) in imgs" :key="index">
         <img :src="item" class="img" />
       </el-carousel-item>
     </el-carousel>

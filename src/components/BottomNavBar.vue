@@ -21,7 +21,7 @@ export default {
         { name: "推荐", router: "/", icon: "md-home" },
         { name: "赛事", router: "/game", icon: "md-basketball" },
         { name: "社区", router: "/jrs", icon: "ios-chatbubbles" },
-        { name: "装备", router: "/shop", icon: "ios-cart" }
+        { name: "装备", router: "/product", icon: "ios-cart" }
       ]
     };
   }

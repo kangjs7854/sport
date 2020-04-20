@@ -3,7 +3,7 @@
     <Icon size="20" type="ios-arrow-back" @click="$router.go(-1)" />
     <ul>
       <li v-for="(item, index) in orders" :key="index" class="order-item">
-        <shop-order-item :order="item" @delete-order="deleteOrder" />
+        <item :order="item" @delete-order="deleteOrder" />
       </li>
     </ul>
     <div class="space"></div>
@@ -12,13 +12,13 @@
 
 <script>
 import { mapState } from "vuex";
-const ShopOrderItem = () => import("../components/ShopOrderItem");
+const item = () => import("./item");
 export default {
   computed: {
     ...mapState(["orders"])
   },
   components: {
-    "shop-order-item": ShopOrderItem
+     item
   },
   mounted() {
     this.$store.commit("GET_ORDERS_FROM_LOCAL");

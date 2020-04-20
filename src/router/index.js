@@ -26,10 +26,7 @@ const HupuStreetDetail = () => import("@/components/HupuStreetDetail.vue");
 const HupuSelfie = () => import("@/components/HupuSelfie.vue");
 const GameNewsList = () => import("@/components/GameNewsList.vue");
 const GameNewsDetail = () => import("@/components/GameNewsDetail.vue");
-const ShopList = () => import("@/components/ShopList.vue");
-const ShopDetail = () => import("@/components/ShopDetail.vue");
-const ShopCart = () => import("@/components/ShopCart.vue");
-const ShopOrder = () => import("@/components/ShopOrder.vue");
+
 Vue.use(VueRouter);
 
 const originalPush = VueRouter.prototype.push;
@@ -94,34 +91,22 @@ const routes = [
           },
         ],
       },
+
       {
-        path: "/shop",
-        component: ShopPage,
-        children: [
-          {
-            path: "/shop",
-            component: ShopList,
-          },
-          {
-            path: "/shop/detail",
-            component: ShopDetail,
-          },
-          {
-            path: "/shop/cart",
-            name: "shopcart",
-            component: ShopCart,
-            meta: {
-              requireLogin: true,
-            },
-          },
-          {
-            path: "/shop/order",
-            component: ShopOrder,
-            meta: {
-              requireLogin: true,
-            },
-          },
-        ],
+        path: "/product",
+        component: () => import("../views/product/index.vue"),
+      },
+      {
+        path: "/product/detail",
+        component: () => import("../views/product/detail.vue"),
+      },
+      {
+        path: "/cart",
+        component: () => import("../views/cart/index.vue"),
+      },
+      {
+        path: "order",
+        component: () => import("../views/order/index.vue"),
       },
       {
         path: "/login",

@@ -13,7 +13,7 @@
       <Button type="text" @click="$router.push('/register')">注册</Button>
       <div class="mayun">
         <p>使用第三方账号登录</p>
-        <img :src="logo" alt="" width="20px" />
+        <img :src="logo" alt width="20px" />
         码云
       </div>
     </div>
@@ -63,36 +63,36 @@ export default {
   }
 };
 </script>
-
-<style scoped>
+<style lang="less" scoped>
 .login-wrap {
   display: flex;
   justify-content: center;
-}
-.login-content {
-  border: 1px #dedede solid;
-  border-radius: 10px;
-  width: 300px;
-  height: 200px;
-  padding: 10px;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-.login-password {
-  padding: 10px 0;
-}
-.login-btn {
-  margin-bottom: 10px;
-}
-.mayun {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
-.mayun p {
-  color: #999;
+  .login-content {
+    border: 1px #dedede solid;
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .login-password {
+    padding: 10px 0;
+  }
+  .login-btn {
+    margin-bottom: 10px;
+  }
+  .mayun {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  .mayun p {
+    color: #999;
+  }
 }
 </style>
+

@@ -1,5 +1,5 @@
 <template>
-  <List item-layout="vertical">
+  <List item-layout="vertical" class="news-wrap">
     <ListItem
       v-for="item in newsList"
       :key="item.id"
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import api from "../../api";
 export default {
   data() {
     return {
@@ -31,24 +32,25 @@ export default {
     },
     jumpTo(item) {
       this.$router.push({
-        path: "/detail",
-        query: { id: item.id }
+        path: "/news/detail",
+        query: {
+          id: item.id
+        }
       });
     }
   },
   mounted() {
-    this.$axios
-      .get(
-        "/api/nc/article/headline/data/10-20.html?from=toutiao&passport=&devId=OPdeGFsVSojY0ILFe6009pLR%2FMsg7TLJv5TjaQQ6Hpjxd%2BaWU4dx4OOCg2vE3noj&size=20&version=5.5.3&spever=false&net=wifi&lat=&lon=&ts=1456985878&sign=oDwq9mBweKUtUuiS%2FPvB015PyTDKHSxuyuVq2076XQB48ErR02zJ6%2FKXOnxX046I&encryption=1&canal=appstore"
-      )
-      .then(res => {
-        this.newsList = res.data.data;
-      });
+    api.getNews().then(res => {
+      this.newsList = res.data.data;
+    });
   }
 };
 </script>
 
 <style>
+.news-wrap{
+  padding: 0.5rem;
+}
 .demo-list-wrap {
   width: 100%;
   max-width: 360px;

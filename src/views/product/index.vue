@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <banner />
     <div class="card-wrap">
       <Card
@@ -45,10 +45,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .card-wrap {
   display: flex;
   flex-wrap: wrap;
+  padding: 0.2rem;
 }
 .card-item {
   display: flex;

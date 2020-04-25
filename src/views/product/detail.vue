@@ -1,6 +1,6 @@
 <template>
-  <keep-alive>
-    <div>
+  <!-- <keep-alive> -->
+    <div class="wrap">
       <!-- 头部菜单 -->
       <div class="title">
         <Icon size="20" type="ios-arrow-back" @click="$router.go(-1)" />
@@ -60,21 +60,15 @@
             long
             type="error"
             @click="$store.commit('OPEN_SIZE_DRAWER')"
-            >查看尺码价格</Button
-          >
-          <Button v-else long type="error" @click="handleBuyShoe"
-            >立即购买</Button
-          >
+          >查看尺码价格</Button>
+          <Button v-else long type="error" @click="handleBuyShoe">立即购买</Button>
         </div>
       </div>
-      <size-drawer
-        :product="product"
-        @choosedSize="handleChoosedSize"
-      />
+      <size-drawer :product="product" @choosedSize="handleChoosedSize" />
     </div>
-  </keep-alive>
+  <!-- </keep-alive> -->
 </template>
-
+ 
 <script>
 import { mapState } from "vuex";
 import sizeDrawer from "./sizeDrawer";
@@ -132,7 +126,7 @@ export default {
       await this.$store.commit("ADD_TO_CART", this.product);
       console.log("此时的购物车数据：", this.$store.state.cart);
       this.$Message.success("添加成功");
-      this.$router.push("/shop/cart");
+      this.$router.push("/cart");
     },
     //跳转到购物车
     jumpTo() {
@@ -143,63 +137,66 @@ export default {
 };
 </script>
 
-<style scoped>
-.img-wrap {
-  display: flex;
-  justify-content: center;
-}
-.img {
-  width: 25%;
-}
-.price {
-  font-weight: 700;
-  color: black;
-}
-.price span:nth-child(2) {
-  font-size: 20px;
-}
-.old {
-  color: #999;
-}
-.old span {
-  text-decoration: line-through;
-}
-.color .title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 5px 0px;
-}
-.color .box-wrap {
-  display: flex;
-}
-.active {
-  border-color: #ff4338;
-}
-.size {
-  display: flex;
-  padding: 10px;
-  justify-content: space-around;
-  align-items: center;
-}
-.size .collect {
-  display: flex;
-  flex-direction: column;
-}
-.size .btn {
-  width: 80%;
-}
-.title {
-  display: flex;
-  justify-content: space-between;
-}
-.box-item span {
-  display: flex;
-  justify-content: center;
-}
-@media only screen and (max-width: 540px) {
+<style lang="less" scoped>
+.wrap {
+  padding: 0.2rem;
+  .img-wrap {
+    display: flex;
+    justify-content: center;
+  }
   .img {
-    width: 60%;
+    width: 25%;
+  }
+  .price {
+    font-weight: 700;
+    color: black;
+  }
+  .price span:nth-child(2) {
+    font-size: 20px;
+  }
+  .old {
+    color: #999;
+  }
+  .old span {
+    text-decoration: line-through;
+  }
+  .color .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0px;
+  }
+  .color .box-wrap {
+    display: flex;
+  }
+  .active {
+    border-color: #ff4338;
+  }
+  .size {
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .size .collect {
+    display: flex;
+    flex-direction: column;
+  }
+  .size .btn {
+    width: 80%;
+  }
+  .title {
+    display: flex;
+    justify-content: space-between;
+  }
+  .box-item span {
+    display: flex;
+    justify-content: center;
+  }
+  @media only screen and (max-width: 540px) {
+    .img {
+      width: 60%;
+    }
   }
 }
 </style>

@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       channels: [
-        { name: "推荐", router: "/news", icon: "md-home" },
+        { name: "推荐", router: "/", icon: "md-home" },
         { name: "赛事", router: "/game", icon: "md-basketball" },
         { name: "社区", router: "/hupu", icon: "ios-chatbubbles" },
         { name: "装备", router: "/product", icon: "ios-cart" }

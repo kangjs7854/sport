@@ -38,7 +38,7 @@ const routes = [
         component: () => import("../views/register/index.vue"),
       },
       {
-        path: "/news",
+        path: "/",
         component: () => import("../views/news/index.vue"),
       },
       {
@@ -60,12 +60,27 @@ const routes = [
       },
       {
         path: "/hupu/detail",
-        name:"hupudetail",
+        name: "hupudetail",
         component: () => import("@/views/hupu/detail.vue"),
       },
+    
+      // {
+      //   path: "*",
+      //   redirect: "/news",
+      // },
+    ],
+  },
+  {
+    path: "/admin",
+    component: () => import("@/views/admin/index.vue"),
+    children: [
       {
-        path: "*",
-        redirect: "/news",
+        path: "/admin/product",
+        component: () => import("../views/admin/product/index.vue"),
+      },
+       {
+        path: "/admin/addproduct",
+        component: () => import("../views/admin/product/addProduct.vue"),
       },
     ],
   },

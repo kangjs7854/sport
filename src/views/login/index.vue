@@ -35,7 +35,7 @@ export default {
     ...mapState(["loginUser"])
   },
   mounted() {
-    this.$store.commit("GET_LOGIN_USER_FROM_LOCAL");
+    // this.$store.commit("GET_LOGIN_USER_FROM_LOCAL");
   },
   methods: {
     login() {

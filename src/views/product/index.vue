@@ -25,11 +25,13 @@ export default {
     item
   },
   computed: {
-    ...mapState(["products"])
+    ...mapState({
+      products:state=>state.product.products
+    })
+
   },
   mounted() {
-    // this.$store.dispatch("allProducts");
-    console.log(this.products);
+    this.$store.dispatch("getAllProducts");
   },
   methods: {
     jumpTo(item) {
@@ -39,7 +41,6 @@ export default {
           id: item._id
         }
       });
-      this.$store.commit("SELECTE_PRODUCT", item);
     }
   }
 };

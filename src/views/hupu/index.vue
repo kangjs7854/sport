@@ -117,8 +117,8 @@ export default {
     }
   }
   .dialog {
-    width: 1rem;
-    height: 0.5rem;
+    width: 2rem;
+    height: 1rem;
     background-color: #515a6e;
     position: fixed;
     border-radius: 0.1rem;
@@ -130,11 +130,13 @@ export default {
     flex-direction: column;
     color: #fff;
     cursor: pointer;
+  
   }
 }
 @media only screen and (max-width: 540px) {
   .right-title {
     display: none;
   }
+  
 }
 </style>

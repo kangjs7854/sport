@@ -1,5 +1,6 @@
 <template>
   <div class="game">
+    <banner />
     <ul class="game-wrap">
       <li class="game-item" 
       v-for="(item,index) in game" :key="index"
@@ -20,6 +21,7 @@
 
 <script>
 import api from "@/api/index.js";
+const banner =  ()=>import("./banner")
 export default {
   data() {
     return {
@@ -43,6 +45,9 @@ export default {
     });
    
     
+  },
+  components:{
+    banner
   },
   filters: {
     cutter(str) {

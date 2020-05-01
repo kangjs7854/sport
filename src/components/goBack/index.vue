@@ -24,8 +24,8 @@ export default {
   height: 0.6rem;
   width: 0.6rem;
   background-color: #ccc;
-  position: sticky;
-  bottom: 1.2rem;
+  position: fixed;
+  bottom: 1.5rem;
   opacity: 0.2;
   border-radius: 0.6rem;
   display: flex;

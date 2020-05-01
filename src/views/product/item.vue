@@ -12,16 +12,11 @@
 <script>
 export default {
   props: ["product"],
-  mounted(){
-    console.log(this.product);
-    
-  }
+  
 };
 </script>
 
 <style scoped>
-
-
 .name {
   font-size: 14px;
   color: #444;

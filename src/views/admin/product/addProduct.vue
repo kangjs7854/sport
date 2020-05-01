@@ -1,14 +1,17 @@
 <template>
-  <div class="form-wrap">
-    <Card class="form">
+  <div>
+    <br />
+    <br />
+
+   <Card class="form">
       <Form :model="model" :label-width="80" show-message>
-        <FormItem label="Name">
+        <FormItem label="商品名称">
           <Input v-model="model.name" placeholder="名字" />
         </FormItem>
-        <FormItem label="Price">
+        <FormItem label="价格">
           <Input v-model="model.price" placeholder="价格" />
         </FormItem>
-        <FormItem label="Select">
+        <FormItem label="厂商">
           <Select v-model="model.manufacturer">
             <Option
               :value="manufacturer._id"
@@ -22,10 +25,10 @@
             >
           </Select>
         </FormItem>
-        <FormItem label="Image">
+        <FormItem label="商品图片">
           <Input v-model="model.image" placeholder="图片" />
         </FormItem>
-        <FormItem label="Description">
+        <FormItem label="商品描述">
           <Input
             v-model="model.description"
             type="textarea"
@@ -34,12 +37,12 @@
           />
         </FormItem>
         <FormItem>
-          <Button type="primary" v-if="isEditing">Update Product</Button>
-          <Button type="primary" v-else @click="saveProduct"
-            >Add Product</Button
+          <!-- <Button type="primary" v-if="isEditing">Update Product</Button> -->
+          <Button type="primary" @click="saveProduct"
+            >增加商品</Button
           >
           <Button style="margin-left: 8px" @click="$router.go(-1)"
-            >Cancel</Button
+            >取消</Button
           >
         </FormItem>
       </Form>
@@ -50,29 +53,42 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      model: {},
+      manufacturers: [
+        {
+          _id: "5eaba5f282c88a300cb061ac",
+          name: "耐克"
+        },
+        {
+          _id: "5eaba60a82c88a300cb061ad",
+          name: "阿迪达斯"
+        },
+        {
+          _id: "5eaba61682c88a300cb061ae",
+          name: "安德玛"
+        },
+        {
+          _id: "5eaba62282c88a300cb061af",
+          name: "李宁"
+        },
+        {
+          _id: "5eaba62e82c88a300cb061b0",
+          name: "安踏"
+        }
+      ]
+    };
   },
-  props: ["model", "manufacturers", "isEditing"],
   methods: {
-    saveProduct() {
-      this.$emit("save-product", this.model);
+    saveProduct(){
+        this.$store.dispatch("addProduct",{
+            product:this.model
+        })
+        this.$router.go(-1) 
     }
-  }
+  },
+ 
 };
 </script>
 
-<style scoped>
-.form-wrap {
-  display: flex;
-  justify-content: center;
-}
-.form {
-  width: 40%;
-  padding: 10px;
-}
-@media only screen and (max-width: 780px) {
-  .form {
-    width: 80%;
-  }
-}
-</style>
+<style></style>

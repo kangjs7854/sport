@@ -9,7 +9,7 @@
         <MenuGroup title="当前">
           <MenuItem name="2-1" to="/admin/news" >新闻</MenuItem>
           <MenuItem name="2-2" to="/admin/jrs" >社区</MenuItem>
-          <MenuItem name="2-3" to="/admin" >商品</MenuItem>
+          <MenuItem name="2-3" to="/admin/product" >商品</MenuItem>
         </MenuGroup>
       </Submenu>
       <MenuItem name="3">

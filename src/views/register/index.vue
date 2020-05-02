@@ -24,37 +24,30 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import api from '@/api/index.js';
 export default {
   data() {
     return {
       username: "",
       password1: "",
       password2: "",
-      infoArr: []
     };
-  },
-  computed: {
-    ...mapState(["loginUser"])
   },
   methods: {
     register() {
       if (!this.username || !this.password1 || !this.password2) {
         this.$Message.warning("账号密码不能为空");
-      } else if (this.password1 !== this.password2) {
+      } else if (this.password1 != this.password2) {
         this.$Message.error("两次密码不一致");
       } else {
-        let temp = {
-          username: this.username,
-          password: this.password1
-        };
-        if (!this.loginUser.some(item => item.username == temp.username)) {
-          this.$store.commit("ADD_LOGIN_USER", temp);
-          this.$Message.success("注册成功");
-          this.$router.go(-1);
-        } else {
-          this.$Message.warning("该用户已经被注册");
-        }
+        api.addUser({
+          username:this.username,
+          password:this.password1
+        }).then(res=>{
+          if(!res.data) return this.$Message.warning("改账号已经被注册")
+          this.$Message.success('注册成功')
+          this.goBack()
+        })
       }
     },
     goBack() {

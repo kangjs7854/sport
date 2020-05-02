@@ -7,7 +7,7 @@
                 <p>{{news.ptime}}</p>
             </div>
             <div class="img-wrap">
-                <img :src="news.img[0].src" alt />
+                <img v-if="news.img" :src="news.img[0].src" alt />
             </div>
             <div class="body" v-html="news.body">{{news.body}}</div>
         </div>

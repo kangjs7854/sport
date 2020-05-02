@@ -31,23 +31,23 @@ export default {
                     key: "_id"
                 },
                 {
-                    title: "Name",
+                    title: "商品名称",
                     slot: "name"
                 },
                 {
-                    title: "Manufacturer",
+                    title: "厂商",
                     key: "manufacturer"
                 },
                 {
-                    title: "Description",
+                    title: "商品描述",
                     key: "description"
                 },
                 {
-                    title: "Price",
+                    title: "价格",
                     key: "price"
                 },
                 {
-                    title: "Action",
+                    title: "操作",
                     slot: "action",
                     width: 150,
                     align: "center"

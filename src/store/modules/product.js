@@ -57,40 +57,36 @@ const actions = {
   getAllProducts({ commit }) {
     commit("LOADING");
     api.getProducts().then((res) => {
-      if (res.status === 200) {
-        commit("GET_ALL_PRODUCTS", {
-          products: res.data,
-        });
-      }
+      if (!res.data) return Message.error("获取全部商品失败");
+      commit("GET_ALL_PRODUCTS", {
+        products: res.data,
+      });
     });
   },
   getProductById({ commit }, payload) {
     const { productId } = payload;
     api.getProductById(productId).then((res) => {
-      if (res.status === 200) {
-        commit("GET_PRODUCT", {
-          product: res.data,
-        });
-      }
+      if (!res.data) return Message.error("获取商品信息失败");
+      commit("GET_PRODUCT", {
+        product: res.data,
+      });
     });
   },
   addProduct({ commit }, payload) {
     const { product } = payload;
     api.addProduct(product).then((res) => {
-      if (res.status === 200) {
-        Message.success("商品添加成功");
-      }
+      if (!res.data) return Message.error("添加失败");
+      Message.success("商品添加成功");
     });
   },
   deleteProduct({ commit }, payload) {
     const { productId } = payload;
     api.deleteProduct(productId).then((res) => {
-      if (res.status == 200) {
-        Message.success("商品删除成功");
-        commit("DELETE_PRODUCT", {
-          productId: res.data,
-        });
-      }
+      if (!res.data) return Message.error("删除失败");
+      Message.success("商品删除成功");
+      commit("DELETE_PRODUCT", {
+        productId: res.data,
+      });
     });
   },
 };
@@ -100,10 +96,8 @@ const mutations = {
   },
   GET_ALL_PRODUCTS(state, payload) {
     const { products } = payload;
-    console.log(payload);
-
     state.loading = false;
-    state.products = products;
+    state.products = products
   },
   GET_PRODUCT(state, payload) {
     const { product } = payload;

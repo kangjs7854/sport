@@ -63,7 +63,11 @@ const routes = [
         name: "hupudetail",
         component: () => import("@/views/hupu/detail.vue"),
       },
-    
+      {
+        path: "/info",
+        component: () => import("@/views/info/index.vue"),
+      },
+
       // {
       //   path: "*",
       //   redirect: "/news",
@@ -78,9 +82,13 @@ const routes = [
         path: "/admin/product",
         component: () => import("../views/admin/product/index.vue"),
       },
-       {
+      {
         path: "/admin/addproduct",
         component: () => import("../views/admin/product/addProduct.vue"),
+      },
+      {
+        path: "/admin/user",
+        component: () => import("../views/admin/user/index.vue"),
       },
     ],
   },

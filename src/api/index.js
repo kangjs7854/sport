@@ -1,6 +1,7 @@
 import axios from "axios";
 const newsApi = "/api/nc/article/headline/data/10-20.html?from=toutiao&passport=&devId=OPdeGFsVSojY0ILFe6009pLR%2FMsg7TLJv5TjaQQ6Hpjxd%2BaWU4dx4OOCg2vE3noj&size=20&version=5.5.3&spever=false&net=wifi&lat=&lon=&ts=1456985878&sign=oDwq9mBweKUtUuiS%2FPvB015PyTDKHSxuyuVq2076XQB48ErR02zJ6%2FKXOnxX046I&encryption=1&canal=appstore"
 const productApi = 'http://localhost:3000/api/v1/products'
+const userApi = 'http://localhost:3000/api/v1/user'
 
 export default {
     getNews(){
@@ -26,5 +27,20 @@ export default {
     },
     deleteProduct(productId){
         return axios.delete(`http://localhost:3000/api/v1/products/${productId}`)
+    },
+    getUser(){
+        return axios.get(userApi)
+    },
+    getUserByUserName(username){
+        return axios.get(`http://localhost:3000/api/v1/user/${username}`)
+    },
+    addUser(parms){
+        return axios.post(userApi,parms)
+    },
+    updateUser(username,pamrs){
+        return axios.put(`http://localhost:3000/api/v1/user/${username}`,pamrs)
+    },
+    deleteUser(userId){
+        return axios.delete(`http://localhost:3000/api/v1/user/${userId}`)
     }
 }

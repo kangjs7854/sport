@@ -56,7 +56,7 @@
             </div>
             <div class="btn">
                 <Button v-if="choosedSize === ''" long type="error" @click="openSizeDrawer">查看尺码价格</Button>
-                <Button v-else long type="error" @click="handleBuyShoe">立即购买</Button>
+                <Button v-else long type="error" @click="addCart">立即购买</Button>
             </div>
         </div>
 
@@ -139,9 +139,7 @@ export default {
             this.sizeActive = index;
             this.choosedSize = index + 36;
             this.isShowDrawer = false;
-
         },
-
         openSizeDrawer() {
             this.isShowDrawer = true;
         },
@@ -149,12 +147,14 @@ export default {
             this.isActive = index;
             this.choosedColor = this.shoesColor[index].type;
         },
-        async handleBuyShoe() {
+        addCart() {
             if (!this.isLogin) return this.$Message.warning("未登录");
             this.$set(this.product, "color", this.choosedColor);
             this.$set(this.product, "size", this.choosedSize);
-            await this.$store.commit("ADD_TO_CART", this.product);
-            console.log("此时的购物车数据：", this.$store.state.cart);
+            console.log(this.product);
+            this.$store.commit("ADD_CART", {
+                product: this.product
+            });
             this.$Message.success("添加成功");
             this.$router.push("/cart");
         },

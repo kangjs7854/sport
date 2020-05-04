@@ -7,6 +7,7 @@ import Viewer from "v-viewer";
 import { Carousel, CarouselItem } from "element-ui";
 import "./util/rem";
 
+
 import "view-design/dist/styles/iview.css";
 import "viewerjs/dist/viewer.css";
 

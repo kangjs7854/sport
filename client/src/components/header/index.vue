@@ -35,7 +35,9 @@ export default {
         };
     },
     mounted() {
-        this.$store.commit("LOGIN", sessionStorage.getItem("username"));
+        const username = sessionStorage.getItem("username");
+        if (!username) return;
+        this.$store.commit("LOGIN", username);
     },
     methods: {
         logout() {

@@ -29,6 +29,7 @@ const routes = [
         path: "/order",
         component: () => import("../views/order/index.vue"),
       },
+   
       {
         path: "/login",
         component: () => import("../views/login/index.vue"),

@@ -51,6 +51,8 @@ const state = {
     },
   ],
   product: {},
+  cart: [],
+  orders: [],
 };
 
 const actions = {
@@ -97,7 +99,7 @@ const mutations = {
   GET_ALL_PRODUCTS(state, payload) {
     const { products } = payload;
     state.loading = false;
-    state.products = products
+    state.products = products;
   },
   GET_PRODUCT(state, payload) {
     const { product } = payload;
@@ -106,6 +108,24 @@ const mutations = {
   DELETE_PRODUCT(state, payload) {
     const { productId } = payload;
     state.products = state.products.filter((item) => item._id != productId);
+  },
+  ADD_CART(state, payload) {
+    const { product } = payload;
+    state.cart.push(product);
+  },
+  DELETE_CART(state, payload) {
+    const { products } = payload;
+    state.cart = state.cart.filter((item) => {
+      return !products.includes(item);
+    });
+  },
+  ADD_ORDERS(state, payload) {
+    const { products } = payload;
+    state.orders.push(products);
+  },
+  DELETE_ORDERS(state, payload) {
+    const { order } = payload;
+    state.orders = state.orders.filter((item) => item != order);
   },
 };
 

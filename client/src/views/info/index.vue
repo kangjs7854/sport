@@ -58,7 +58,9 @@ export default {
         };
     },
     created() {
-        api.getUserByUserName(sessionStorage.getItem("username")).then(res => {
+        const username = sessionStorage.getItem("username");
+        if (!username) return;
+        api.getUserByUserName(username).then(res => {
             this.userInfo = res.data;
         });
     },

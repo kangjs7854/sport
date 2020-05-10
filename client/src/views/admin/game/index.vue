@@ -38,7 +38,7 @@ export default {
   },
   mounted() {
       api.getGame().then(res=>{
-        this.game = res.data.data          
+        this.game = this.randomSort(res.data.data)        
       })
   },
   
@@ -55,9 +55,11 @@ export default {
       });
     },
     remove(row) {
-      this.$store.commit("REMOVE_JRS_NEWS", {
-        id: row.id
-      });
+      let index = row._index;
+      this.game.splice(index,1)
+    },
+    randomSort(arr){
+      return arr.sort(()=>0.5-Math.random())
     }
   }
 };

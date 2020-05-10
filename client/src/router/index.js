@@ -98,7 +98,11 @@ const routes = [
       {
         path:"/admin/game",
         component:()=>import("../views/admin/game/index.vue")
-      }
+      },
+      {
+        path:"/admin/echart",
+        component:()=>import("../views/admin/echart/index.vue")
+      },
     ],
   },
 ];

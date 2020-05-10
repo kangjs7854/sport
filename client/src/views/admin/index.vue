@@ -15,10 +15,9 @@
             <MenuItem name="3" to="/admin/user">
                 <Icon type="ios-people" />用户管理
             </MenuItem>
-            <MenuItem name="4" >
+            <MenuItem name="4" to="/admin/echart">
                 <Icon type="ios-stats" />统计分析
             </MenuItem>
-        
         </Menu>
         <router-view />
     </div>

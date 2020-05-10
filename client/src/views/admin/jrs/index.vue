@@ -45,7 +45,10 @@ export default {
   },
   mounted() {
     api.getJrs().then(res=>{
-      this.jrsData = res.data.data
+      console.log(res);
+      
+      this.jrsData = this.randomSort(res.data.data)
+      
     })
   },
  
@@ -62,8 +65,12 @@ export default {
       });
     },
     remove(row) {
-      console.log(row.id);
-     
+     console.log(row);
+     const index = row._index
+     this.jrsData.splice(index,1) 
+    },
+    randomSort(arr){
+      return arr.sort(()=>0.5-Math.random())
     }
   }
 };

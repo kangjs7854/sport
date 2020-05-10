@@ -12,9 +12,14 @@ module.exports = {
         changeOrigin: true,
         ws: true,
         pathRewrite: {
-          "^/api": ""
-        }
-      }
-    }
-  }
+          "^/api": "",
+        },
+      },
+    },
+  },
+  configureWebpack: {
+    externals: {
+      echarts: "echarts",
+    },
+  },
 };

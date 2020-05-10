@@ -1,5 +1,5 @@
 <template>
-  <Table border :columns="columns12" :data="jrsNews">
+  <Table border :columns="columns12" :data="game">
     <template slot-scope="{ row }" slot="name">
       <strong>{{ row.name }}</strong>
     </template>
@@ -13,39 +13,35 @@
 </template>
 
 <script>
+import api from '@/api/index.js';
 export default {
   data() {
     return {
       columns12: [
         {
-          title: "ID",
-          key: "id"
-        },
-        {
-          title: "Title",
+          title: "标题",
           key: "title"
         },
         {
-          title: "Description",
+          title: "赛事内容",
           key: "content"
         },
         {
-          title: "Action",
+          title: "操作",
           slot: "action",
           width: 150,
           align: "center"
         }
-      ]
+      ],
+      game:[]
     };
   },
   mounted() {
-    this.$store.dispatch("allJrsNews");
+      api.getGame().then(res=>{
+        this.game = res.data.data          
+      })
   },
-  computed: {
-    jrsNews() {
-      return this.$store.state.jrsNews;
-    }
-  },
+  
   methods: {
     show(index) {
       this.$Modal.info({

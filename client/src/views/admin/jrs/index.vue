@@ -1,5 +1,6 @@
 <template>
-  <Table border :columns="columns12" :data="jrsData">
+  <div>
+    <Table border :columns="columns12" :data="jrsData">
     <template slot-scope="{ row }" slot="name">
       <strong>{{ row.name }}</strong>
     </template>
@@ -10,46 +11,44 @@
       </Poptip>
     </template>
   </Table>
+  </div>
 </template>
 
 <script>
+import api from '@/api/index.js';
 export default {
   data() {
     return {
       columns12: [
+       
         {
-          title: "ID",
-          key: "id"
-        },
-        {
-          title: "Title",
+          title: "标题",
           key: "title"
         },
         {
-          title: "Name",
+          title: "用户名",
           slot: "name"
         },
         {
-          title: "Description",
+          title: "内容",
           key: "content"
         },
         {
-          title: "Action",
+          title: "操作",
           slot: "action",
           width: 150,
           align: "center"
         }
-      ]
+      ],
+      jrsData:[]
     };
   },
   mounted() {
-    this.$store.dispatch("allJrsMsg");
+    api.getJrs().then(res=>{
+      this.jrsData = res.data.data
+    })
   },
-  computed: {
-    jrsData() {
-      return this.$store.state.jrsMsg;
-    }
-  },
+ 
   methods: {
     show(index) {
       this.$Modal.info({
@@ -64,9 +63,7 @@ export default {
     },
     remove(row) {
       console.log(row.id);
-      this.$store.commit("REMOVE_JRS_MSG", {
-        id: row.id
-      });
+     
     }
   }
 };

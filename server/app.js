@@ -29,6 +29,13 @@ mongoose.connect(
     }
   }
 );
+// if(process.env.NODE.ENV=='development'){
+//   console.log('开发环境');
+  
+// }else{
+//   console.log('产品环境');
+  
+// }
 
 // CORS config here
 app.all("/*", function(req, res, next) {

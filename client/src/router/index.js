@@ -91,6 +91,14 @@ const routes = [
         path: "/admin/user",
         component: () => import("../views/admin/user/index.vue"),
       },
+      {
+        path:"/admin/jrs",
+        component:()=>import("../views/admin/jrs/index.vue")
+      },
+      {
+        path:"/admin/game",
+        component:()=>import("../views/admin/game/index.vue")
+      }
     ],
   },
 ];

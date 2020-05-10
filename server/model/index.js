@@ -12,12 +12,16 @@ const productSchema = Schema({
   image: String,
   price: Number,
   description: String,
+  hot:Number,
   manufacturer: { type: ObjectId, ref: "Manufacturer" },
 });
 
 const manufacturerSchema = Schema({
   id: ObjectId,
-  name: String,
+  name: {
+    type:String,
+    unique:true
+  },
 });
 
 const userSchema = Schema({
@@ -33,6 +37,13 @@ const userSchema = Schema({
   address: String,
   avatar: String,
 });
+
+const postSchema = Schema({
+  id:ObjectId,
+  title:String,
+  content:String,
+  // username:
+})
 
 const Product = model("Product", productSchema);
 const Manufacturer = model("Manufacturer", manufacturerSchema);

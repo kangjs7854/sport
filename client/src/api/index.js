@@ -4,12 +4,11 @@ const newsApi =
 
 let API_BASE;
 if (process.env.NODE_ENV == "development") {
-  console.log("这是开发环境");
   API_BASE = "http://localhost:3000/api/v1";
 } else {
-  console.log("产品环境");
   API_BASE = "/api/v1";
 }
+const manufacturersApi = API_BASE+'/manufacturers'
 const productApi = API_BASE + "/products";
 const userApi = API_BASE + "/user";
 export default {
@@ -24,6 +23,15 @@ export default {
   },
   getJrs() {
     return axios.get(`/bxj2.json`);
+  },
+  getManufacturers(){
+    return axios.get(manufacturersApi)
+  },
+  addManufacturers(parms){
+    return axios.post(manufacturersApi,parms)
+  },
+  deleteManufacturers(manufacturerId){
+    return axios.delete(API_BASE + `/manufacturers/${manufacturerId}`)
   },
   getProducts() {
     return axios.get(productApi);

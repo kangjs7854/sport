@@ -2,19 +2,23 @@
     <div>
         <div id="project" style="width:100%;height:300px"></div>
         <div id="dataInfo" style="width:100%;height:300px"></div>
-        <div id="dataInfo2" style="width:100%;height:300px"></div>
 
     </div>
 </template>
 
 <script>
 import echarts from "echarts";
+import api from '@/api/index.js';
 export default {
+    data(){
+        return{
+            userNumber:3
+        }
+    },
     mounted() {
         this.initProject();
         this.initData();
-        this.initData2();
-        console.log(this.products);
+        this.getUser()
         
     },
     methods: {
@@ -127,7 +131,6 @@ export default {
                     }
                 ]
             };
-
             project.setOption(optionProject);
         },
         initData() {
@@ -138,9 +141,9 @@ export default {
                 "商品数据",
                 "用户数据"
             ];
-            const data = ["59", "91", "300", "3", "1"];
+            const data = ["59", "91", "261", this.products.length, this.userNumber ];
 
-            const yMax = 500;
+            const yMax = 300;
             const dataShadow = [];
 
             for (var i = 0; i < data.length; i++) {
@@ -234,131 +237,17 @@ export default {
 
             dataInfo.setOption(optionData);
         },
-        initData2() {
-            const dataInfo2 = echarts.init(document.getElementById("dataInfo2"));
-            // Generate data
-            var category = [];
-            var dottedBase = +new Date();
-            var lineData = [];
-            var barData = [];
-
-            for (var i = 0; i < 20; i++) {
-                var date = new Date((dottedBase += 3600 * 24 * 1000));
-                category.push(
-                    [
-                        date.getFullYear(),
-                        date.getMonth() + 1,
-                        date.getDate()
-                    ].join("-")
-                );
-                var b = Math.random() * 200;
-                var d = Math.random() * 200;
-                barData.push(b);
-                lineData.push(d + b);
-            }
-            const optionDataInfo = {
-                backgroundColor: "#0f375f",
-                tooltip: {
-                    trigger: "axis",
-                    axisPointer: {
-                        type: "shadow"
-                    }
-                },
-                legend: {
-                    data: ["line", "bar"],
-                    textStyle: {
-                        color: "#ccc"
-                    }
-                },
-                xAxis: {
-                    data: category,
-                    axisLine: {
-                        lineStyle: {
-                            color: "#ccc"
-                        }
-                    }
-                },
-                yAxis: {
-                    splitLine: { show: false },
-                    axisLine: {
-                        lineStyle: {
-                            color: "#ccc"
-                        }
-                    }
-                },
-                series: [
-                    {
-                        name: "line",
-                        type: "line",
-                        smooth: true,
-                        showAllSymbol: true,
-                        symbol: "emptyCircle",
-                        symbolSize: 15,
-                        data: lineData
-                    },
-                    {
-                        name: "bar",
-                        type: "bar",
-                        barWidth: 10,
-                        itemStyle: {
-                            barBorderRadius: 5,
-                            color: new echarts.graphic.LinearGradient(
-                                0,
-                                0,
-                                0,
-                                1,
-                                [
-                                    { offset: 0, color: "#14c8d4" },
-                                    { offset: 1, color: "#43eec6" }
-                                ]
-                            )
-                        },
-                        data: barData
-                    },
-                    {
-                        name: "line",
-                        type: "bar",
-                        barGap: "-100%",
-                        barWidth: 10,
-                        itemStyle: {
-                            color: new echarts.graphic.LinearGradient(
-                                0,
-                                0,
-                                0,
-                                1,
-                                [
-                                    {
-                                        offset: 0,
-                                        color: "rgba(20,200,212,0.5)"
-                                    },
-                                    {
-                                        offset: 0.2,
-                                        color: "rgba(20,200,212,0.2)"
-                                    },
-                                    { offset: 1, color: "rgba(20,200,212,0)" }
-                                ]
-                            )
-                        },
-                        z: -12,
-                        data: lineData
-                    },
-                    {
-                        name: "dotted",
-                        type: "pictorialBar",
-                        symbol: "rect",
-                        itemStyle: {
-                            color: "#0f375f"
-                        },
-                        symbolRepeat: true,
-                        symbolSize: [12, 4],
-                        symbolMargin: 1,
-                        z: -10,
-                        data: lineData
-                    }
-                ]
-            };
-            dataInfo2.setOption(optionDataInfo)
+        getUser(){
+            api.getUser().then(res=>{
+                console.log(res);
+                if(!res.data) return ;
+                this.userNumber = res.data.length
+                console.log(this.userNumber);
+                
+                
+            })
         }
+       
     },
     computed:{
         products(){
@@ -368,6 +257,7 @@ export default {
     watch: {
         handler(newVal) {
             this.initProject();
+            this.initData();
         },
 
         deep: true //对象内部属性的监听，关键。 }

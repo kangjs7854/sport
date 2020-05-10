@@ -56,6 +56,7 @@ export default {
     },
     publish() {
       this.isShow = false;
+      this.$router.push("/post")
     },
     checkMine() {
       this.isShow = false;
@@ -117,8 +118,8 @@ export default {
     }
   }
   .dialog {
-    width: 2rem;
-    height: 1rem;
+    width: 2.3rem;
+    height: 1.3rem;
     background-color: #515a6e;
     position: fixed;
     border-radius: 0.1rem;

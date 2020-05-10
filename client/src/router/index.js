@@ -68,6 +68,10 @@ const routes = [
         path: "/info",
         component: () => import("@/views/info/index.vue"),
       },
+      {
+        path: "/post",
+        component: () => import("@/views/post/post.vue"),
+      },
 
       // {
       //   path: "*",

@@ -36,17 +36,18 @@ const userSchema = Schema({
   phone: Number,
   address: String,
   avatar: String,
+  post:{type : ObjectId , ref: 'Post'}
 });
 
 const postSchema = Schema({
   id:ObjectId,
   title:String,
   content:String,
-  // username:
 })
 
 const Product = model("Product", productSchema);
 const Manufacturer = model("Manufacturer", manufacturerSchema);
 const User = model("User", userSchema);
+const Post = model("Post",postSchema)
 
-module.exports = { Product, Manufacturer, User };
+module.exports = { Product, Manufacturer, User,Post };

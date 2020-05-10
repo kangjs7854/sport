@@ -100,10 +100,10 @@ export default {
             this.model.hot = Math.floor(Math.random()*100000)
             console.log(this.model);
             
-            // this.$store.dispatch("addProduct", {
-            //     product: this.model
-            // });
-            // this.$router.go(-1);
+            this.$store.dispatch("addProduct", {
+                product: this.model
+            });
+            this.$router.go(-1);
         },
         addManufacturers() {
             let that = this;

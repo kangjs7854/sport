@@ -11,6 +11,8 @@ if (process.env.NODE_ENV == "development") {
 const manufacturersApi = API_BASE+'/manufacturers'
 const productApi = API_BASE + "/products";
 const userApi = API_BASE + "/user";
+const postApi = API_BASE + '/post'
+
 export default {
   getNews() {
     return axios.get(newsApi);
@@ -54,10 +56,25 @@ export default {
   addUser(parms) {
     return axios.post(userApi, parms);
   },
-  updateUser(username, pamrs) {
-    return axios.put(API_BASE + `/user/${username}`, pamrs);
+  updateUser(username, parms) {
+    return axios.put(API_BASE + `/user/${username}`, parms);
   },
   deleteUser(userId) {
     return axios.delete(API_BASE + `/user/${userId}`);
   },
+  getPost(){
+    return axios.get(postApi)
+  },
+  getPostById(postId){
+    return axios.get(API_BASE + `/post/${postId}`)
+  },
+  addPost(parms){
+    return axios.post(postApi,parms)
+  },
+  updatePost(postId,params){
+    return axios.put(API_BASE+`/post/${postId}`,params)
+  },
+  deletePost(postId){
+    return axios.delete(API_BASE+`/post/${postId}`)
+  }
 };

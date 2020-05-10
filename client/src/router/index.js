@@ -72,6 +72,10 @@ const routes = [
         path: "/post",
         component: () => import("@/views/post/post.vue"),
       },
+      {
+        path: "/myPost",
+        component: () => import("@/views/post/myPost.vue"),
+      },
 
       // {
       //   path: "*",

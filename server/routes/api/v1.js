@@ -4,6 +4,7 @@ const router = express.Router();
 const productController = require("../../controllers/product");
 const manufacturerController = require("../../controllers/manufacturer");
 const userController = require("../../controllers/user");
+const postController = require('../../controllers/post')
 
 //获取所有的制造商（manufacturers）
 router.get("/manufacturers", manufacturerController.all);
@@ -32,5 +33,11 @@ router.get("/user/:username", userController.byUserName);
 router.post("/user", userController.create);
 router.put("/user/:username", userController.update);
 router.delete("/user/:id", userController.remove);
+
+router.get("/post",postController.all);
+router.get('/post/:id',postController.byId)
+router.post('/post',postController.create);
+router.put("/post/:id",postController.update);
+router.delete("/post/:id",postController.remove)
 
 module.exports = router;

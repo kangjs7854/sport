@@ -28,6 +28,8 @@ const userController = {
   },
   remove(req, res) {
     const idParams = req.params.id;
+    console.log(idParams);
+    
     User.findOne({ _id: idParams }).remove((err, removed) =>
       res.json(idParams)
     );

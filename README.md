@@ -8,7 +8,10 @@
 5. docker实现应用的镜像化和容器化，实现应用的一键部署
 
 > 目录结构
-  - client  vue
-  - server express
-  - docker-compose.yml  docker的快速部署文件
+  - client  
+  > 使用的是vue和一些第三方的组件库开发
+  - server 
+  > express+mongodb开发接口
+  - docker-compose.yml  
+  > docker的快速部署项目，通过dockerfile文件生成前后端的镜像，docker-compose命令行生成容器，安装依赖并运行，实现线上部署
   

@@ -14,10 +14,15 @@
 
 
 ## 目录结构
-  - client  
+  - client    
     使用的是vue和一些第三方的组件库开发
-  - server 
+  - server   
     express+mongodb开发接口
-  - docker-compose.yml  
+  - docker-compose.yml    
     docker的快速部署项目，通过dockerfile文件生成前后端的镜像，docker-compose命令行生成容器，安装依赖并运行，实现线上部署
+  
+## 运行
+  1. client和server文件夹分别运行```npm i ```命令行安装依赖
+  2. 安装mongodb数据库并启动服务
+  3. client和server分别启动服务
   

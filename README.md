@@ -12,11 +12,12 @@
 7. echart的引入和使用，更加直观的展示数据
 8. docker实现应用的镜像化和容器化，实现应用的一键部署
 
-> 目录结构
+
+## 目录结构
   - client  
-  > 使用的是vue和一些第三方的组件库开发
+    使用的是vue和一些第三方的组件库开发
   - server 
-  > express+mongodb开发接口
+    express+mongodb开发接口
   - docker-compose.yml  
-  > docker的快速部署项目，通过dockerfile文件生成前后端的镜像，docker-compose命令行生成容器，安装依赖并运行，实现线上部署
+    docker的快速部署项目，通过dockerfile文件生成前后端的镜像，docker-compose命令行生成容器，安装依赖并运行，实现线上部署
   
